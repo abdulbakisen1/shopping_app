@@ -9,10 +9,10 @@ abstract final class RouteService {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
         case AppRoutes.home:
-        return MaterialPageRoute(builder: (_) => HomeStatePage());
+        return MaterialPageRoute(builder: (_) => const HomeStatePage());
         case AppRoutes.shopping:
         return MaterialPageRoute(builder: (_) => Shopping());
-        case AppRoutes.Profile:
+        case AppRoutes.profile:
         return MaterialPageRoute(builder: (_) => ProfilePage());
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold(), fullscreenDialog: true);

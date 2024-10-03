@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-abstract final class Constants {
+abstract final class ColorConstants {
 
   static const Color primary = Color(0xFFE02626);
   static const Color secondary = Color(0xFFCE3B32);
@@ -21,5 +21,7 @@ abstract final class Constants {
   static const Color red =Color.fromARGB(239, 126, 27, 27);
   static const Color orange =Color.fromARGB(255, 255, 166, 0);
   static const Color lightOrange =Color.fromARGB(255, 241, 229, 229);
+  static const Color Orangetr =Color.fromARGB(255, 241, 122, 26);
+
 
 }
