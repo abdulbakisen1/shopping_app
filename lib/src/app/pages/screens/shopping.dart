@@ -64,7 +64,16 @@ class _ShoppingState extends State<Shopping> {
 
     return Scaffold(
       appBar: AppBar(
-        
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          color: ColorConstants.background,
+          onPressed: () {
+                Scaffold.of(context).openDrawer();//Drawer açıyor
+          },
+        ),
+        title:const Text('shoping',style: TextStyle(fontWeight: FontWeight.bold),),
+        centerTitle: true,  
+        backgroundColor: ColorConstants.orange,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -631,7 +640,7 @@ class _ShoppingState extends State<Shopping> {
             //     ),
             //   ),
             // ),
-            Spacer(),
+            const Spacer(),
             ElevatedButton(
               onPressed: () {
                 // Sepeti onaylama işlemi tetikleniyor

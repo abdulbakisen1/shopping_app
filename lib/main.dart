@@ -25,13 +25,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-        cardTheme: CardTheme(
+        cardTheme:const CardTheme(
         )
       ),
       debugShowCheckedModeBanner: false,
 
       onGenerateRoute: RouteService.generateRoute,
-      initialRoute: AppRoutes.home,
+      initialRoute: AppRoutes.SplashScreen,
       
     );
   }

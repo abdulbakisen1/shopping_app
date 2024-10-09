@@ -15,6 +15,7 @@ class HomeStatePage extends StatefulWidget {
 
 class _HomeStatePageState extends State<HomeStatePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey(); // CurvedNavigationBar için key
   int _selectedIndex = 0;
 
   // Sayfa arası geçiş yeri
@@ -28,26 +29,6 @@ class _HomeStatePageState extends State<HomeStatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     icon: const Icon(
-      //       Icons.menu,
-      //       color: ColorConstants.background,
-      //     ),
-      //     onPressed: () {
-      //       _scaffoldKey.currentState?.openDrawer();
-      //     },
-      //   ),
-      //   title: const Text(
-      //     'Shopping',
-      //     style: TextStyle(
-      //       color: ColorConstants.background,
-      //       fontWeight: FontWeight.bold,
-      //     ),
-      //   ),
-      //   backgroundColor: ColorConstants.navy,
-      //   centerTitle: true,
-      // ),
       drawer: _buildDrawer(context), // Drawer Menü
       body: IndexedStack(
         index: _selectedIndex,
@@ -58,14 +39,17 @@ class _HomeStatePageState extends State<HomeStatePage> {
         ],
       ),
       backgroundColor: [
-        ColorConstants.white, 
-        Colors.white, 
-        ColorConstants.purple][_selectedIndex],
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.transparent,
-        color: Colors.orange.shade400,
-        animationDuration: const Duration(milliseconds: 300),
-        onTap: (index) {
+        ColorConstants.background, 
+        ColorConstants.background, 
+        ColorConstants.white
+        ]
+        [_selectedIndex],
+        bottomNavigationBar: CurvedNavigationBar(
+          key: _bottomNavigationKey,
+          backgroundColor: Colors.transparent,
+          color: Colors.orange.shade400,//bottomnavi'nin arka plan renki
+          animationDuration: const Duration(milliseconds: 300),
+          onTap: (index) {
           setState(() {
             _selectedIndex = index;
           });
@@ -96,24 +80,25 @@ class _HomeStatePageState extends State<HomeStatePage> {
         children: [
           const DrawerHeader(
             decoration: BoxDecoration(
-              color: ColorConstants.navy,
+              color: ColorConstants.orange,
             ),
             child: Text(
               'Menu',
               style: TextStyle(
                 color: ColorConstants.background,
                 fontSize: 24,
+
               ),
             ),
           ),
           ListTile(
             leading: const Icon(Icons.home),
             title: const Text('Anasayfa'),
+            
             onTap: () {
               Navigator.pop(context); // Drawer'ı kapatır
-              setState(() {
-                _selectedIndex = 0; // Anasayfa'ya geç
-              });
+              _onDrawerItemTapped(0);
+
             },
           ),
           ListTile(
@@ -121,9 +106,8 @@ class _HomeStatePageState extends State<HomeStatePage> {
             title: const Text('Sepetim'),
             onTap: () {
               Navigator.pop(context); // Drawer'ı kapatır
-              setState(() {
-                _selectedIndex = 1; // Sepetim sayfasına geç
-              });
+              _onDrawerItemTapped(1);
+
             },
           ),
           ListTile(
@@ -131,21 +115,44 @@ class _HomeStatePageState extends State<HomeStatePage> {
             title: const Text('Ayarlar'),
             onTap: () {
               Navigator.pop(context); // Drawer'ı kapatır
-              setState(() {
-                _selectedIndex = 2; // Profil'e geç
-              });
+             _onDrawerItemTapped(2);
             },
           ),
         ],
       ),
     );
   }
+  void _onDrawerItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index; // Sayfayı değiştir
+    });
+    final CurvedNavigationBarState? navBarState =
+        _bottomNavigationKey.currentState;
+    navBarState?.setPage(index); // BottomNavigationBar'ı da güncelle
+  }
 
   // Ana Sayfa Tasarımı
   Widget _buildHomePage() {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ana Sayfa'),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.menu,
+            color: ColorConstants.background,
+          ),
+          onPressed: () {
+            _scaffoldKey.currentState?.openDrawer();
+          },
+        ),
+        title: const Text(
+          'Ana Sayfa',
+          style: TextStyle(
+            color: ColorConstants.background,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: ColorConstants.orange,
+        centerTitle: true,
       ),
       body: 
          Column(
