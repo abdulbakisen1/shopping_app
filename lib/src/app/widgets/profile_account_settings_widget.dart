@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider_shopping/src/app/pages/screens/address_information.dart';
+import 'package:provider_shopping/src/app/pages/screens/email_change.dart';
 import 'package:provider_shopping/src/app/pages/screens/user_information.dart';
 
 import 'package:provider_shopping/src/data/utils/constants/color_constants.dart';
@@ -66,27 +68,28 @@ class ProfileAccountSettingsWidget extends StatelessWidget {
         title: const Text('Adres Bilgilerim'),
         trailing:const Icon(
           Icons.arrow_forward_ios_rounded,
-                color: ColorConstants.grey,
+          color: ColorConstants.grey,
           size: 22,
         ),
         onTap: () {
-          // CardFinans tıklanma olayı
+          Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => const AddressInformationPage())    
+          );
         },
       ),
-        ListTile(
-              leading:const Icon(
+       const ListTile(
+              leading: Icon(
                 Icons.language,
                 color: ColorConstants.blue,
               ),
-              title: const Text('Ülke Değiştir'),
-              trailing:const Icon(
+              title:  Text('Ülke Değiştir'),
+              trailing: Icon(
                 Icons.arrow_forward_ios_rounded,
                 color: ColorConstants.grey,
                 size: 22,
               ),
-              onTap: () {
-                // Krediler tıklanma olayı
-              },
+             
             ),
               ListTile(
               leading:const Icon(
@@ -99,8 +102,11 @@ class ProfileAccountSettingsWidget extends StatelessWidget {
                 color: ColorConstants.grey,
                 size: 22,
               ),
-              onTap: () {
-                // Krediler tıklanma olayı
+              onTap: () {   
+             Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => const EmailChange()),    
+                );
               },
             ),
               ListTile(

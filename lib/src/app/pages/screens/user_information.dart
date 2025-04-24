@@ -17,6 +17,7 @@ class _UserInformationState extends State<UserInformation> {
   final TextEditingController _ulkeKoduController = TextEditingController(text: "+90");
   final TextEditingController _telefonController = TextEditingController();
 
+  bool _isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +40,26 @@ class _UserInformationState extends State<UserInformation> {
           children: [
             Container(
               decoration: BoxDecoration(
-                color: ColorConstants.orange,
-                borderRadius: BorderRadius.circular(12),
+                color: ColorConstants.background,
+                 border:const Border(
+                  top: BorderSide(
+                    color: Colors.black, 
+                    width: 1.0,
+                  ),
+                  bottom: BorderSide(
+                    color: Colors.black, 
+                    width: 1.0, 
+                  ),
+                  left: BorderSide(
+                    color: Colors.black, 
+                    width: 1.0, 
+                  ),
+                  right: BorderSide(
+                    color: Colors.black, 
+                    width: 1.0, 
+                  ),
+                ),
+                borderRadius: BorderRadius.circular(4), 
               ),
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -86,7 +105,6 @@ class _UserInformationState extends State<UserInformation> {
               ),
             ),
             const SizedBox(height: 16),
-            // Adı (alt alta)
             TextField(
               controller: _adController,
               decoration: const InputDecoration(
@@ -95,7 +113,6 @@ class _UserInformationState extends State<UserInformation> {
               ),
             ),
             const SizedBox(height: 16),
-            // Soyadı (alt alta)
             TextField(
               controller: _soyadController,
               decoration: const InputDecoration(
@@ -104,7 +121,6 @@ class _UserInformationState extends State<UserInformation> {
               ),
             ),
             const SizedBox(height: 16),
-            // Email (alt alta)
             TextField(
               controller: _emailController,
               decoration: const InputDecoration(
@@ -113,7 +129,6 @@ class _UserInformationState extends State<UserInformation> {
               ),
             ),
             const SizedBox(height: 16),
-            // Ülke Kodu ve Cep Telefonu yanyana
             Row(
               children: [
                 Flexible(
@@ -141,8 +156,12 @@ class _UserInformationState extends State<UserInformation> {
             Row(
               children: [
                 Checkbox(
-                  value: false,
-                  onChanged: (bool? value) {},
+                  value: _isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      _isChecked = value ?? false;
+                    });
+                  },
                 ),
                 const Expanded(
                   child: Text(

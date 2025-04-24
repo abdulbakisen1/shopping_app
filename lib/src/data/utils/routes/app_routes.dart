@@ -6,4 +6,7 @@ class AppRoutes {
     static const String shopping = '/shopping';
     static const String SignIn = '/SignIn';
     static const String userinformation= '/userinformation';
+    static const String addressinformation= '/addressinformation';
+    static const String EditAddress= '/EditAddress';
+    static const String emailchenge= '/Emailchenge';
 }
